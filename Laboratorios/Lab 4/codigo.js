@@ -64,10 +64,10 @@ function ejer3() {
 
 
 function ejer4() {
-     
+
     var tol = 0;
     var num = 0;
-    var pmss="";
+    var pmss = "";
     var promedios = prompt("Cuantos Promedios ?");
     var promediolargo = prompt("Dime cuantos numeros son: ");
     var ProArreglos = [];
@@ -76,10 +76,26 @@ function ejer4() {
             var num = prompt("Numero [" + i + "]--Promedio || " + j + " ||");
             tol += parseInt(num);
         }
-        pmss = pmss + "<br/> || #"+j+"#= "+tol/promediolargo;
-        tol=0;
+        pmss = pmss + "<br/> || #" + j + "#= " + tol / promediolargo;
+        tol = 0;
     }
     document.getElementById("r").innerHTML = pmss;
+
+
+}
+
+function ejer5() {
+    var numero = prompt("Ingresar Numero:");
+    while (parseInt(numero / 10) != 0) {
+
+        document.getElementById("inver").innerHTML += (numero % 10);
+        numero = parseInt(numero / 10);
+        if (parseInt(numero / 10) == 0) {
+            document.getElementById("inver").innerHTML += (numero % 10);
+            document.getElementById("inver").innerHTML += "   |  ";
+        }
+
+    }
 
 
 }
