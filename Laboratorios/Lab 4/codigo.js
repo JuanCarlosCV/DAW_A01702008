@@ -62,3 +62,28 @@ function ejer3(){
     document.getElementById("pos").innerHTML = "Positivos: "+pos;
     
 }
+
+
+function ejer4(){
+    var tol =0;
+    var num =0;
+    var promediolargo = prompt("Dime cuantos numeros son: ");
+    var promedios = prompt("Cuantos Promedios ?");
+    var arreglo=[];
+    for(var j =0;j<promedios;j++){
+     for(var i =0;i<promediolargo;i++){
+        var num = prompt("Numero ["+i+"]--Promedio || "+j+" ||");
+        tol+=num; 
+    }   
+         arreglo[j].push(tol/promedios);
+        tol=0;
+    }
+    
+     for(var i =0;i<promedios;i++){
+     var proms= proms +" | "+  arreglo[i];
+     }
+    
+    document.getElementById("Promedios").innerHTML= proms;
+    
+    
+}
