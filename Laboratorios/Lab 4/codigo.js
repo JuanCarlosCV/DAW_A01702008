@@ -67,18 +67,19 @@ function ejer4() {
      
     var tol = 0;
     var num = 0;
+    var pmss="";
     var promedios = prompt("Cuantos Promedios ?");
     var promediolargo = prompt("Dime cuantos numeros son: ");
     var ProArreglos = [];
-    for (var j = 0; j < promedios; j++) {
-        for (var i = 0; i < promediolargo; i++) {
+    for (var j = 1; j <= promedios; j++) {
+        for (var i = 1; i <= promediolargo; i++) {
             var num = prompt("Numero [" + i + "]--Promedio || " + j + " ||");
-            tol = tol + num;
+            tol += parseInt(num);
         }
-       // arreglo[j].push(tol);
-        //tol=0;
+        pmss = pmss + "<br/> || #"+j+"#= "+tol/promediolargo;
+        tol=0;
     }
-    document.getElementById("resul").innerHTML = "juego";
+    document.getElementById("r").innerHTML = pmss;
 
 
 }
