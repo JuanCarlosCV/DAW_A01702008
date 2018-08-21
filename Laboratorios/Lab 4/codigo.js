@@ -12,3 +12,24 @@ var tablero = document.getElementById("tabla");
     cel3.innerHTML = n*n*n;
 }    
 }
+
+function ejer2(){
+    var numAle1 = Math.round(Math.random()*50);
+    var numAle2 = Math.round(Math.random()*50);
+   var inicio = new Date();
+    var resultado = prompt("Escribir Resultado        "+numAle1+"+"+numAle2+" :");
+    var fin = new Date();
+    
+    if(resultado == numAle1+numAle2){
+       var res = "Correcto";
+       }else{
+           var res = "Incorrecto";
+       }
+    var tiempo = Math.round((fin-inicio)/1000);
+    document.getElementById("resultado").innerHTML = res;
+    document.getElementById("temp").innerHTML = tiempo+"    Segundos";
+}
+
+function ejer3(){
+    
+}
