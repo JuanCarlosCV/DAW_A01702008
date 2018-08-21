@@ -31,5 +31,34 @@ function ejer2(){
 }
 
 function ejer3(){
+    var arreglo=[];
+    var pos=0;
+    var neg=0;
+    var cer=0;
+    for(var i=0 ;i<10;i++){
+        var numero = prompt("Ingresar # ["+i+"]");
+        arreglo.push(numero);
+        
+        
+    }
+    
+    for(var i=0 ;i<10;i++){
+        if(Number(arreglo[i]<0)){
+            neg+=1;
+           }else if(Number(arreglo[i])==0){
+            cer+=1;
+        }else {
+              pos+=1;   
+        }        
+        
+    }
+    
+    document.getElementById("negat").innerHTML = "Negativos: "+neg;
+    
+    
+    document.getElementById("ceros").innerHTML = "Ceros: "+cer;
+    
+    
+    document.getElementById("pos").innerHTML = "Positivos: "+pos;
     
 }
