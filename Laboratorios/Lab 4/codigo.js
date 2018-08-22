@@ -99,3 +99,19 @@ function ejer5() {
 
 
 }
+
+function fibb(){
+    var numero = prompt("Ingresa Numero:");
+    var n1=0;
+    var n2=1;
+    var n3;
+    document.getElementById("fi").innerHTML += " "+n1;
+    document.getElementById("fi").innerHTML += " "+n2;
+    
+    for(var i=3 ;i<=numero;i++){
+        n3=n1+n2;
+        n1=n2;
+        n2=n3;
+        document.getElementById("fi").innerHTML += " "+n3;
+    }
+}
