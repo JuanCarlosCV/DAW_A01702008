@@ -1,89 +1,150 @@
-
 <!DOCTYPE html>
 <html lang=es>
-  <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script type = "text/javascript" src ="codigo.js">
-        </script>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="codigo.js">
+
+
+    </script>
     <link rel="stylesheet" href="styles.css">
 
-    </head>
-    
-    <body>
-<header>
+</head>
+
+<body>
+    <header>
         <h3>LAB 5.- Programación orientada a eventos</h3>
-        </header>
-        
-              <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-<button class="tablink" onclick="openPage('Contra', this, 'green')" id="defaultOpen">Passwords</button>
-<button class="tablink" onclick="openPage('Vent', this, 'blue')">Venta</button>
-<button class="tablink" onclick="openPage('Tema', this, 'orange')">About</button>
+    </header>
 
-<div id="Home" class="tabcontent">
-  <h3>Home</h3>
-  <p>Juan Carlos Cabrera Vega A01702008</p>
-<h4>
-    Passwords:</h4>
-    <p>Verificar contraseñas</p>
+    <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+    <button class="tablink" onclick="openPage('Contra', this, 'green')" id="defaultOpen">Passwords</button>
+    <button class="tablink" onclick="openPage('Vent', this, 'cadetblue')">Venta</button>
+    <button class="tablink" onclick="openPage('Tema', this, 'orange')">Tema</button>
+
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+        <p>Juan Carlos Cabrera Vega A01702008</p>
+        <h4>
+            Passwords:</h4>
+        <p>Verificar contraseñas</p>
+
+
+        <h4>
+            Ventas:</h4>
+        <p>Realizar la venta de productos</p>
+        <p></p>
+    </div>
+
+    <div id="Contra" class="tabcontent">
+<h3>Verificar Sesion .- JUAN CARLOS</h3>
+        <p>Ingresar contraseñas</p>
+        <p>Con largo mayor a 6 caracteres</p>
+        <form name="forma" action="">
+            
+            <label for="contra">Contraseña:</label>
+            <input type="password" name="contra" id="contra"/>
+            <br/> 
+            <label for="verifica">Reescribir: </label>
+            <input minlenght="6" type="password" name="verifica" id="verifica"/>
+            
+            <label id="prueba" name="prueba">...</label>
+            <br/>
+            <button onclick="ver()">Verificar</button>
+        </form>
+    </div>
+
+    <div id="Vent" class="tabcontent">
+        <h3>Venta de Productos</h3>
+        <p>Elige Productos y Compra
+        </p>
+        <table class="productos">
+        <thead>
+            <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+            <th>Total</th>
+            </tr>
+            </thead>    
+         <tr>
+        <th>Teclado inalambrico</th>
+        <th> <label id="pres1">250</label></th>
+        <th><input value="1" size="30" id="canti1" type="number" min="0"> <button class="boton_personalizado" onclick=" agregarArt1()">Agregar Articulo</button></th>
+        <th><label id="res1">0</label></th>     
+        </tr>
+        <tr>
+        <th>Computadora DELL 3.0 Gghz 4 gb Ram</th>
+        <th> <label id="pres2">8250</label></th>
+        <th><input value ="1" size="30" id="canti2" type="number" min="0"><button class="boton_personalizado" onclick=" agregarArt2()">Agregar Articulo</button></th>
+            <th><label id="res2">0</label></th>
+            
+            
+            </tr>   
+            <tr>
+            <th>Mouse Inalambrico </th>
+            <th><label id="pres3">300</label></th>
+            <th><input value="1" size="30" id="canti3" type="number" min="0"><button class="boton_personalizado" onclick=" agregarArt3()" >Agregar Articulo</button></th>
+            <th><label id="res3">0</label></th>
+            </tr>
+            <tr>
+            <th></th>
+            <th></th>
+            <th>-----------------------------   SUBTOTAL</th>
+            <th id="subtotal">0</th>
     
+            </tr>
+            
+            
+<tr>
+            <th></th>
+            <th></th>
+            <th>-----------------------------   IVA 16 %</th>
+            <th id="iva"></th>
     
-    <h4>
-    Ventas:</h4>
-    <p>Realizar la venta de productos</p>
-    <p></p>
-</div>
-
-<div id="Contra" class="tabcontent">
-  <h3>Contraseñas</h3>
-  <p>Ingresar contraseñas</p>
-<p>Con largo mayor a 6 caracteres</p>    
-    <form name="forma" action="">
+            </tr>
+            <tr>
+            <th></th>
+            <th><button onclick="comprar()">Finalizar Compra</button></th>
+            <TH>----------------------------     TOTAL</TH>
+            <th id="total">0</th>
+            </tr>
         
-    Contraseña : <input type="password" name="contra"/>
-<br/>
-        Reescribir:   <input type="password" name="verifica"/>
-        <br/>
-        <p id="prueba" name="prueba">dadsad</p>
-       <button onclick="ver()" id="boton">Verificar</button>
-    </form>
-</div>
+        </table>
+    </div>
 
-<div id="Vent" class="tabcontent">
-  <h3>Venta de Productos</h3>
-  <p>Get in touch, or swing by for a cup of coffee.</p>
-</div>
-
-<div id="Tema" class="tabcontent">
-  <h3>About</h3>
-  <p>Who we are and what we do.</p>
-</div>  
+    <div id="Tema" class="tabcontent">
+        <h3>About</h3>
+        <p>Who we are and what we do.</p>
+    </div>
     <script>
-function openPage(pageName,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(pageName).style.display = "block";
-    elmnt.style.backgroundColor = color;
+        function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
 
-}
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script> 
-        <footer>
-<h4>¿Por qué es una buena práctica usar JavaScript para checar que sean válidos los inputs de las formas antes de enviar los datos al servidor?
-</h4>
-<h4>¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?
-            </h4>            
-            <h4>
-                Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
-            </h4>
-Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
-        </footer>
-    </body>
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+
+    </script>
+    <footer>
+        <h4>¿Por qué es una buena práctica usar JavaScript para checar que sean válidos los inputs de las formas antes de enviar los datos al servidor?
+        </h4>
+        <h4>¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?
+        </h4>
+        <h4>
+            Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
+        </h4>
+        Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
+    </footer>
+</body>
+
 </html>
