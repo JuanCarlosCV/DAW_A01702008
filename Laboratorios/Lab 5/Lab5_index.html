@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang=es>
   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
    <script type = "text/javascript" src ="codigo.js">
         </script>
     <link rel="stylesheet" href="styles.css">
@@ -9,12 +10,66 @@
     </head>
     
     <body>
-    <header>
-        Lab 5.- Programacion orientada a eventos 
+<header>
+        <h3>LAB 5.- Programación orientada a eventos</h3>
         </header>
         
-    <section>
-        
-        </section>    
+              <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+<button class="tablink" onclick="openPage('Contra', this, 'green')" id="defaultOpen">Passwords</button>
+<button class="tablink" onclick="openPage('Vent', this, 'blue')">Venta</button>
+<button class="tablink" onclick="openPage('Tema', this, 'orange')">About</button>
+
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+  <p>Juan Carlos Cabrera Vega A01702008</p>
+<h4>
+    Passwords:</h4>
+    <p>Verificar contraseñas</p>
+    <p></p>
+</div>
+
+<div id="Contra" class="tabcontent">
+  <h3>Contraseñas</h3>
+  <p>Verificar contraseñas</p>
+    
+</div>
+
+<div id="Vent" class="tabcontent">
+  <h3>Venta de Productos</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="Tema" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>  
+    <script>
+function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script> 
+        <footer>
+<h4>¿Por qué es una buena práctica usar JavaScript para checar que sean válidos los inputs de las formas antes de enviar los datos al servidor?
+</h4>
+<h4>¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?
+            </h4>            
+            <h4>
+                Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
+            </h4>
+Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
+        </footer>
     </body>
 </html>
