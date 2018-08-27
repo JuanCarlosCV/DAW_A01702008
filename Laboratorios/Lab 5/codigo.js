@@ -56,3 +56,14 @@ function comprar(){
     document.getElementById("total").innerHTML = resfinal;
     alert("Gracias por comprar");
 }
+function validaciones(){
+    var name = document.getElementById("nombre").value;
+    var apellido = document.getElementById("apellido").value;
+    var trabajo = document.getElementById("trabajo").value;
+    var edad = document.getElementById("edad").value;
+    var correo = document.getElementById("correo").value;
+    if(name == "" && apellido =="" && trabajo =="" && edad=="" && correo == ""){
+       alert("Escribe tus datos completos");
+       }
+    alert("Envio Correcto");
+}
