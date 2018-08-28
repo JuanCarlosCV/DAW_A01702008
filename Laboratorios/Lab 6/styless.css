@@ -19,31 +19,51 @@ html {
     height: 100%;
     margin: 0;
 }
-
+#salida{
+    border: 0;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+        
+}
 #ayuda{
-    
-    background-color: aqua;
-    position: relative;
+    display: none;
+    border-radius: 4px;
+    color: white;
+    background-color: darkgray;
+    position: absolute;
     visibility: visible;
     height: 50px;
-    width: 50px;
+    width: 200px;
     
 }
-
+#fondo_estilo{
+    border-radius: 10px;
+    height: 400px;
+    background-color: white;
+    padding: 10px;
+    border-color: black;
+    border-style: solid;
+}
 section {
    
     border-radius: 10px;
     margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 40px;
+    margin-right: 40px;
     display: -webkit-flex;
     display: flex;
 }
-
+#til{
+    text-indent: 200px;
+    font-size: 30px;
+    text-align: center;
+}
 article {
    
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 40px;
+    margin-top: 40px;
     -webkit-flex: 3;
     -ms-flex: 3;
     flex: 3;
@@ -101,7 +121,7 @@ form {
     background: #f9f9f9;
     border: 1px solid #c1c1c1;
     margin: 2rem auto 0;
-    max-width: 600px;
+    max-width: 500px;
     padding: 1em
 }
 
@@ -136,7 +156,7 @@ input:focus {
 
 @media (min-width:400px) {
     form {
-        grid-template-columns: 200px 1fr;
+        grid-template-columns: 120px 1fr;
         grid-gap: 16px
     }
     label {
@@ -148,4 +168,67 @@ input:focus {
         grid-column: 2/3
     }
 }
+#refer {
+    display: none;
+}
+.boton_personalizado{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;
+  }
+  .boton_personalizado:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+  }
 
+      span {
+                display:block;
+                font-size:25px;
+                color:#FFF;
+                text-align:center;
+            }
+            /*
+             * propiedades de las cajas (arrastrables)
+             */
+            div[id ^='caja'] {
+                width:330px;
+                height:auto;
+                background:rgba(204, 0, 0, 0.8);
+                border: 3px solid rgba(204, 0, 0, 1);
+                margin:5px auto;
+                padding:5px;
+                color:#FFF;
+            }
+            div[id ^='caja']:after {
+                content:"  Fuera del contenedor"
+            }
+            /*
+             * propiedades que van a tomar el elemento arrastrable luego de que  este se suelte dentro de su contenedor
+             */
+            div[id ^='contenedor'] div[id ^='caja'] {	
+                background:rgba(0,178,255,0.8);
+                border: 3px solid rgba(0,178,255, 1);
+                float:right;
+            }
+            div[id ^='contenedor'] div[id ^='caja'] span {
+                color:#FFF;
+            }
+            div[id ^='contenedor'] div[id ^='caja']:after {
+                content:"  Dentro del contenedor  "
+            }
+            /*
+             * propiedades del contenedor
+             */
+            div[id ^='contenedor'] {
+                width:350px;
+                height:200px;
+                background:rgba(38,104,127,0.8);
+                border: 3px solid rgba(38,104,127, 1);
+                margin:5px auto;
+                padding:5px;
+            }

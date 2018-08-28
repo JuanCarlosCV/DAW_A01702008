@@ -1,61 +1,97 @@
-
 <!DOCTYPE html>
 <html lang=es>
+
 <head>
-     <script type="text/javascript" src="codigo.js">
+    <title>LAB 6.-</title>
+    <script type="text/javascript" src="codigo.js">
+
+
     </script>
-      <link rel="stylesheet" href="styless.css">
-    </head>
+    <link rel="stylesheet" href="styless.css">
+</head>
+
 <body>
-     <header>
+    <header>
         <h3>LAB 6.- Documentos dinámicos con JavaScript</h3>
+        <h4>Juan Carlos Cabrera Vega A01702008</h4>
     </header>
-    
+
     <section>
-    <article>
-        <h4 id="titulo" onclick="cambiaTitulo()">Estilo de Letras</h4>
-        
-        <form>
-        <p  id="text1" onclick="cambiaColortext1()">El Tecnológico de Monterrey dio su primera clase formal con un holograma a más de 160 alumnos de cinco campus. Aunque el Tec es pionero en clases de telepresencia, no había tenido una formal donde el maestro fuera un holograma y los estudiantes pudieran verlo proyectado de cuerpo entero, a pesar de la distancia.</p>
-        <p id="text2">En la clase, de la materia Física 1, la imagen holográfica del profesor Alfonso Serrano Heredia fue proyectada este martes 21 en cada salón.  Alumnos de Monterrey, Saltillo, Chihuahua, Laguna y Tampico tomaron simultáneamente la lección.</p>
-         
-        </form>
-        </article>
         <article>
-        <form>
-              <label for="nombre" class="nombre">Nombre</label>
-            <input id="nombre" type="text">
+            <div id="fondo_estilo">
+                <button onclick="myFunction()">Click me: setInterval</button>
+                <h4 id="titulo" onclick="cambiaTitulo()">Estilo de Letras</h4>
+                <h6>Dar clic en los textos para cambios respectivos</h6>
 
-            <label for="apellido" class="apellido">Apellido</label>
-            <input id="apellido" type="text">
+                <p id="text1" onclick="cambiaColortext1()">El Tecnológico de Monterrey dio su primera clase formal con un holograma a más de 160 alumnos de cinco campus. Aunque el Tec es pionero en clases de telepresencia, no había tenido una formal donde el maestro fuera un holograma y los estudiantes pudieran verlo proyectado de cuerpo entero, a pesar de la distancia.</p>
+                <p id="text2" onclick="cambiaColortext2()">En la clase, de la materia Física 1, la imagen holográfica del profesor Alfonso Serrano Heredia fue proyectada este martes 21 en cada salón. Alumnos de Monterrey, Saltillo, Chihuahua, Laguna y Tampico tomaron simultáneamente la lección.</p>
 
-            <label for="edad">Edad</label>
-            <input id="edad" type="text">
-            
-            <label for="correo">Correo</label>
-            <input id="correo" type="email">
-            
-            <label for="key1">Contraseña</label>
-            <input id="key1" type="password">
-            
-            <label for="key2">Reescribir</label>
-            <input id="key2" type="password">
-            </form>
-            
-            <div id="ayuda">
-                
             </div>
         </article>
-        
+        <article>
+            <form>
+                <label id="til">Formulario</label>
+                <label for="nombre" class="nombre">Nombre</label>
+                <input id="nombre" type="text" placeholder="Escribir nombre" required>
+
+                <label for="apellido" class="apellido">Apellido</label>
+                <input id="apellido" type="text" placeholder="Escribir apellidos" required>
+
+                <label for="edad">Edad</label>
+                <input id="edad" type="text" placeholder="Solo numeros">
+
+                <label for="correo">Correo</label>
+                <input id="correo" type="email" placeholder="email@example.com " required>
+
+                <label for="key1">Contraseña</label>
+                <input id="key1" placeholder="Contraseña" type="password" required>
+
+                <label for="key2">Verificar</label>
+                <input id="key2" placeholder="Escribir de nuevo contraseña" type="password">
+                <label id="ayuda">
+               <input id="salida"type="image" onclick="salir_ayuda()" value="" src="Remove.png" >
+            </label>
+                <input type="button" name="" value="Enviar" class="boton_personalizado" onclick="validaciones()" required>
+            </form>
+
+
+        </article>
+
     </section>
-   <section>
-    <article>
-       <h3>Uso de settimeout y setInterval </h3>
-       </article>
+    <section>
+        <article>
+            <div id="caja1" draggable="true" ondragstart="dragstart(this, event)"> <span>Caja 1</span>
+
+            </div>
+            <div id="caja2" draggable="true" ondragstart="dragstart(this, event)"> <span>Caja 2</span>
+
+            </div>
+            <!-- contenedor -->
+            <div id="contenedor" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false"> <span>Contenedor</span>
+
+            </div>
+
+        </article>
+        <article>
+            <button onclick="myFuncion()">Click show Referencias:setTimeout</button>
+            <h3>Referencias</h3>
+            <div id="refer">
+                <p>https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/image</p>
+                <p>https://vinkula.com/crear-botones-personalizados-con-html5-y-css3/</p>
+                <p>http://nereida.deioc.ull.es/~pcgull/hli04/js/node35.html</p>
+                <p>http://www.htmldog.com/guides/css/beginner/margins/</p>
+                <p>http://idesweb.es/proyecto/proyecto-prac05-js-validacion</p>
+            </div>
+        </article>
     </section>
     <footer>
-    
+        <h4>¿Cuáles son las diferencias entre los posibles valores de la propiedad position?</h4>
+        <p> las diferencias son para cambios en posicion en el documento, algunos pueden ser sobre linea. Algunos otros al lado o encima de imagenes</p>
+        <h4>¿Cuáles son los valores estándar para la propiedad visibility?</h4>
+        <p>Son hidden o none, esto es para mantener una visibilidad en el documento</p>
+        <h4>¿Qué es el zIndex y para qué sirve?</h4>
+        <p> Sirve para realizar una gestion de capas entre los estilos del documento, esto es para fondos o comportamientos en un documento web</p>
     </footer>
-    </body>
+</body>
 
 </html>
