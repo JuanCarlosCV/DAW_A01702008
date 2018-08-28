@@ -13,15 +13,45 @@
     
     <section>
     <article>
-        <h4>Estilo de Letras</h4>
-        <p onclick="cambiaColor(this, 'red')">El Tecnológico de Monterrey dio su primera clase formal con un holograma a más de 160 alumnos de cinco campus. Aunque el Tec es pionero en clases de telepresencia, no había tenido una formal donde el maestro fuera un holograma y los estudiantes pudieran verlo proyectado de cuerpo entero, a pesar de la distancia.</p>
-        <p>En la clase, de la materia Física 1, la imagen holográfica del profesor Alfonso Serrano Heredia fue proyectada este martes 21 en cada salón.  Alumnos de Monterrey, Saltillo, Chihuahua, Laguna y Tampico tomaron simultáneamente la lección.</p>
+        <h4 id="titulo" onclick="cambiaTitulo()">Estilo de Letras</h4>
+        
+        <form>
+        <p  id="text1" onclick="cambiaColortext1()">El Tecnológico de Monterrey dio su primera clase formal con un holograma a más de 160 alumnos de cinco campus. Aunque el Tec es pionero en clases de telepresencia, no había tenido una formal donde el maestro fuera un holograma y los estudiantes pudieran verlo proyectado de cuerpo entero, a pesar de la distancia.</p>
+        <p id="text2">En la clase, de la materia Física 1, la imagen holográfica del profesor Alfonso Serrano Heredia fue proyectada este martes 21 en cada salón.  Alumnos de Monterrey, Saltillo, Chihuahua, Laguna y Tampico tomaron simultáneamente la lección.</p>
+         
+        </form>
         </article>
         <article>
-        
+        <form>
+              <label for="nombre" class="nombre">Nombre</label>
+            <input id="nombre" type="text">
+
+            <label for="apellido" class="apellido">Apellido</label>
+            <input id="apellido" type="text">
+
+            <label for="edad">Edad</label>
+            <input id="edad" type="text">
+            
+            <label for="correo">Correo</label>
+            <input id="correo" type="email">
+            
+            <label for="key1">Contraseña</label>
+            <input id="key1" type="password">
+            
+            <label for="key2">Reescribir</label>
+            <input id="key2" type="password">
+            </form>
+            
+            <div id="ayuda">
+                
+            </div>
         </article>
+        
     </section>
-    <section>
+   <section>
+    <article>
+       <h3>Uso de settimeout y setInterval </h3>
+       </article>
     </section>
     <footer>
     

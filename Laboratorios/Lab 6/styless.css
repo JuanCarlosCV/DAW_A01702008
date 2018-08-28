@@ -5,12 +5,12 @@ header {
 }
 
 p {
-    text-indent: 1cm
+    text-indent: 1cm;
+    
 }
 
 h4 {
-    position: sticky;
-    text-indent: .5cm
+    text-indent: .5cm;
 }
 
 body,
@@ -20,32 +20,42 @@ html {
     margin: 0;
 }
 
-
+#ayuda{
+    
+    background-color: aqua;
+    position: relative;
+    visibility: visible;
+    height: 50px;
+    width: 50px;
+    
+}
 
 section {
+   
     border-radius: 10px;
     margin-top: 25px;
     margin-left: 25px;
     margin-right: 25px;
     display: -webkit-flex;
-    display: flex
+    display: flex;
 }
 
 article {
+   
     margin-top: 15px;
     margin-left: 15px;
     -webkit-flex: 3;
     -ms-flex: 3;
     flex: 3;
     background-color: #f1f1f1;
-    padding: 10px
+    padding: 10px;
 }
 
 header {
     border-radius: 4px;
     background: #333;
     margin: 10px;
-    font-size: 15px
+    font-size: 15px;
 }
 
 footer {
@@ -53,7 +63,7 @@ footer {
     margin-top: 10px;
     background-color: darkgray;
     margin: 10px;
-    text-align: left
+    text-align: left;
 }
 
 body:after {
@@ -71,5 +81,71 @@ body:after {
     bottom: 0;
     left: 0;
 
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 
 }
+
+form {
+    color: #000;
+    display: grid;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin: 2rem auto 0;
+    max-width: 600px;
+    padding: 1em
+}
+
+form input {
+    background: #fff;
+    border: 1px solid #9c9c9c
+}
+
+form button {
+    background: #d3d3d3;
+    padding: .7em;
+    width: 100%;
+    border: 0
+}
+
+form button:hover {
+    background: gold
+}
+
+label {
+    padding: .5em .5em .5em 0
+}
+
+input {
+    padding: .7em;
+    margin-bottom: .5rem
+}
+
+input:focus {
+    outline: gold solid 3px
+}
+
+@media (min-width:400px) {
+    form {
+        grid-template-columns: 200px 1fr;
+        grid-gap: 16px
+    }
+    label {
+        text-align: right;
+        grid-column: 1/2
+    }
+    button,
+    input {
+        grid-column: 2/3
+    }
+}
+
