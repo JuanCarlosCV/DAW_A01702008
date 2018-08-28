@@ -133,34 +133,22 @@
             <button onclick="validaciones()">Enviar</button>
         </form>
     </div>
-    <script>
-        function openPage(pageName, elmnt, color) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].style.backgroundColor = "";
-            }
-            document.getElementById(pageName).style.display = "block";
-            elmnt.style.backgroundColor = color;
-
-        }
-        document.getElementById("defaultOpen").click();
-
-    </script>
+   
     <footer>
         <h4>¿Por qué es una buena práctica usar JavaScript para checar que sean válidos los inputs de las formas antes de enviar los datos al servidor?
         </h4>
+        
+        <p> Es bueno para la validacion de datos, existen algunos atributos en input. Pero con javaScript se realizan comparaciones y restricciones.</p>
         <h4>¿Cómo puedes saltarte la seguridad de validaciones hechas con JavaScript?
         </h4>
+        
+        <p>Alguna de las formas seria excluyendo el uso de codigo en javascript</p>
         <h4>
             Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
         </h4>
-        Si te puedes saltar la seguridad de las validaciones de JavaScript, entonces ¿por qué la primera pregunta dice que es una buena práctica?
-    </footer>
+        <p>Es buena practica para poder manejar de una forma mas optima los datos.</p>
+     
+            </footer>
 </body>
 
 </html>
