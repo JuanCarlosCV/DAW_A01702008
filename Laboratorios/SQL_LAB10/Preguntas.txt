@@ -1,0 +1,12 @@
+
+
+JUAN CARLOS CABRERA VEGA A01702008
+
+
+¿Que muestra la instrucción? Muestra las especificaciones de la tabla y, sus tipos de atributos y sus especificaciones.
+
+¿Qué efecto tuvo esta acción?
+Recreo las tablas que ya se habian creando anteriormente, pero con solo ejecutar el archivo sql
+
+¿Qué utilidad tiene esta manera de ejecutar los comandos de SQL?
+Facilita y ayuda solo reutilizar sentencias de sql. Esto beneficia el no reescribir las sentencias en cada momento y facilita recuperacion de datos, y tambien la creacion
