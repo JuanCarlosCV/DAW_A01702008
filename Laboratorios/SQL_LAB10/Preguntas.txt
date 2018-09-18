@@ -1,6 +1,6 @@
 
 
-JUAN CARLOS CABRERA VEGA A01702008
+
 
 
 ¿Que muestra la instrucción? Muestra las especificaciones de la tabla y, sus tipos de atributos y sus especificaciones.
