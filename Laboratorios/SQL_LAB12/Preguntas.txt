@@ -1,0 +1,66 @@
+JUAN Carlos Cabrera Vega
+
+EJERCICIO 2
+
+¿Cuál es? 
+
+¿A qué se debe? 
+1.-¿Qué ocurrió?
+SQL no deja insertar debido a la llave primaria
+
+
+2.-¿Qué información muestra esta consulta? 
+Muestra la llave primaria de materiales
+
+3.-¿Qué sentencias utilizaste para definir las llaves primarias? 
+
+ ALTER TABLE Proveedores add constraint llaveProveedores PRIMARY KEY (RFC)
+ sp_helpconstraint proveedores 
+
+4.-¿Qué sentencias utilizaste para definir este constrait?
+
+  ALTER TABLE Entregan ADD CONSTRAINT llaveEntregan PRIMARY KEY  CLUSTERED( Clave , RFC, Numero,Fecha )  
+  sp_helpconstraint entregan
+
+Ejercicio 3
+5.- ¿Qué particularidad observas en los valores para clave, rfc y numero? 
+
+Que son valores insertados sin ningun valor especifico, o solo un ejemplo
+
+
+ 
+6.-¿Cómo responde el sistema a la inserción de este registro?
+
+El registro fue exitoso
+
+7.-¿Qué significa el mensaje que emite el sistema? 
+inconsistencia
+"The INSERT statement conflicted with the FOREIGN KEY constraint "cfentreganclave". The conflict occurred in database "a1702008", table "a1702008.Materiales", column 'Clave'."
+8.-¿Qué significado tiene la sentencia anterior? 
+
+Que existe un conflicto por el enlace que ya se creo entre tablas
+
+9.-¿Qué significan las columnas de esas consultas?
+Son la muestra de las relaciones entre las tablas, en este la tabla entregan tiene mas relaciones con todas las demas tablas
+
+
+Ejercicio 4
+
+10.-¿Qué uso se le está dando a GETDATE()? 
+Es utilizado para insertar la fecha actual
+11.-¿Tiene sentido el valor del campo de cantidad? 
+Pues no tiene mucho sentido, porque es un valor 0
+
+12.-¿Cómo responde el sistema? 
+
+Existe un conflicto, debido a que no esta permitido ese registro
+13.-¿Qué significa el mensaje? 
+No es permitida una insercion con una cantidad menor a 0
+
+
+Como parte del reporte, explica el concepto de integridad referencial, en caso de que no cuentes con una idea clara de este concepto se te recomienda buscar su definición en diferentes fuentes (Libros, Biblioteca Digital u otras). Es necesario que cites la(s) fuente(s) que consultaste.
+
+
+
+
+
