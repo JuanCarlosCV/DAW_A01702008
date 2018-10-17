@@ -5,18 +5,21 @@
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">¿Por qué es una buena práctica separar el controlador de la vista?</p>
-                  <p class="grey-text text-lighten-4">R= esto mantiene un manejo entre servidor y cliente, en otra palabras puede diferenciar entre conectar a un sistema remoto, sin tener todo una combinacion de codigos en una sola pagina. </p>
-                   <p class="grey-text text-lighten-4">Aparte de los arreglos $_POST y $_GET, ¿qué otros arreglos están predefinidos en php y cuál es su función?</p>
-                  <p class="grey-text text-lighten-4">R= Put.- crear y Delete .- Borrar</p>
-                   <p class="grey-text text-lighten-4">Explora las funciones de php, y describe 2 que no hayas visto en otro lenguaje y que llamen tu atención.</p>
-                  <p class="grey-text text-lighten-4">R=func_num_args — Devuelve el número de argumentos pasados a la función</p>
-                  <p class="grey-text text-lighten-4">function_exists — Devuelve TRUE si la función dada ha sido definida</p>
+                <p class="grey-text text-lighten-4">¿Por qué es importante hacer un session_unset() y luego un session_destroy()?
+                  </p>
+                  <p class="grey-text text-lighten-4">R= 
+                  session_unset — Libera todas las variables de sesión
+                session_destroy — Destruye toda la información registrada de una sesión
+                Es un proceso para dejar limpia la sesion iniciada en determinado momento      
+                  </p>
+                   <p class="grey-text text-lighten-4">¿Cuál es la diferencia entre una variable de sesión y una cookie?</p>
+                  <p class="grey-text text-lighten-4">R= Sesion esta limitada a los usuarios y tiene un tiempo limite
+                  Cookies: ofrece persistencia a ciertos datos a lo largo del tiempo</p>
+                   <p class="grey-text text-lighten-4">¿Qué técnicas se utilizan en sitios como facebook para que el usuario no sobreescriba sus fotos en el sistema de archivos cuando sube una foto con el mismo nombre?</p>
+                  <p class="grey-text text-lighten-4">R=se realiza una numeracion de fotos, para mantener un orden y consistencia</p>
                   
-
-
-                  <p class="grey-text text-lighten-4">¿Qué es XSS y cómo se puede prevenir?</p>
-                  <p class="grey-text text-lighten-4">R= es un ataque de inyección de código malicioso para su posterior ejecución que puede realizarse a sitios web, aplicaciones locales e incluso al propio navegador.</p>
+                  <p class="grey-text text-lighten-4">¿Qué es CSRF y cómo puede prevenirse?</p>
+                  <p class="grey-text text-lighten-4">R=  Este ataque va hacia los navegadores de los clientes, busca algun servicio vulnerable y abusa de la confianza iniciada por un usuario. Se puede evitar con la creacion de id aleatorios</p>
                   
               </div>
               
