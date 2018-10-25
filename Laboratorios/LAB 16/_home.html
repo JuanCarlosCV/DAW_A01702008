@@ -1,0 +1,76 @@
+
+
+
+<div class="row">
+    
+    
+  
+    
+    <!-- Formulario de registrar Producto  -->
+ <form class="row" id="frmajax" method="POST" >
+      <div class="row z-depth-5">
+         <div class="col s6">
+          <button data-target="registrar" class="btn modal-trigger blue">Registrar</button>
+          
+          </div>
+          
+          
+    <div id="registrar" class="modal">
+    <div class="modal-content">
+      <h4>Registrar Producto</h4>
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="mandarina, etc" id="name" name="name" type="text" class="validate">
+          <label for="unidad">Fruta: </label>
+        </div>
+        <div class="input-field col s6">
+          <input id="unidad" name="unidad" type="text" class="validate">
+          <label for="unidad">Unidad: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input  id="cantidad" name="cantidad" type="number" class="validate">
+          <label for="cantidad">Cantidad: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="precio" name="precio" type="number" class="validate">
+          <label for="precio">Precio: </label>
+        </div>
+      </div>  
+          <div class="row">
+        <div class="input-field col s12">
+          <input id="ciudad" name="ciudad"type="text" class="validate">
+          <label for="ciudad">Ciudad: </label>
+        </div>
+      </div> 
+      
+    </div>
+    <div class="modal-footer">
+        <button  type="submit" class="modal-close waves-effect waves-green btn-flat" id="btnguardar" onclick="cerrar()">Guardar</button>
+
+    </div>
+  </div> 
+       </div>
+     </form>
+      <!-- Formulario de busqueda Producto  -->
+    <form class="col s12">
+        <h3>Buscar Frutas</h3>
+      <div class="row z-depth-5">
+          
+        <div class="input-field col s6">
+          <input placeholder="Escrbe nombre de jugador" id="caja_busqueda" type="text" class="validate">
+          <label for="first_name">Nombre</label>
+        </div>
+        </div>
+     </form>
+    
+   
+  </div>  
+     
+<div class="row">
+    <div id="datos" class="col s12 "></div>
+
+    </div>

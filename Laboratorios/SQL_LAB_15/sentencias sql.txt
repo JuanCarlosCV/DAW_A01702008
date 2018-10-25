@@ -1,0 +1,225 @@
+Sentencias
+
+SQL 
+1.-select * from materiales 
+
+1000	Varilla 3/16	100.00
+1010	Varilla 4/32	115.00
+1020	Varilla 3/17	130.00
+
+--45 rows
+
+2.-select * from materiales where clave=1000
+
+1000	Varilla 3/16	100.00
+
+--1 row
+
+3.-select clave,rfc,fecha from entregan 
+1000	AAAA800101   	1998-07-08 00:00:00.000
+1000	AAAA800101   	1999-08-08 00:00:00.000
+1000	AAAA800101   	2000-04-06 00:00:00.000
+--132 rows
+
+4.-select * from materiales,entregan 
+where materiales.clave = entregan.clave 
+
+1000	Varilla 3/16	100.00	1000	AAAA800101   	5000	1998-07-08 00:00:00.000	165.00
+1000	Varilla 3/16	100.00	1000	AAAA800101   	5019	1999-08-08 00:00:00.000	254.00
+1000	Varilla 3/16	100.00	1000	AAAA800101   	5019	2000-04-06 00:00:00.000	7.00
+
+--132 rows
+
+5.-select * from entregan,proyectos 
+where entregan.numero < = proyectos.numero 
+
+
+1000	AAAA800101   	5000	1998-07-08 00:00:00.000	165.00	5000	Vamos Mexico
+1200	EEEE800101   	5000	2000-03-05 00:00:00.000	177.00	5000	Vamos Mexico
+1400	AAAA800101   	5000	2002-03-12 00:00:00.000	382.00	5000	Vamos Mexico
+1000	AAAA800101   	5000	1998-07-08 00:00:00.000	165.00	5001	Aztecón
+
+--1188 rows
+
+6.-(select * from entregan where clave=1450) 
+union 
+(select * from entregan where clave=1300) 
+
+1300	GGGG800101   	5005	2002-06-10 00:00:00.000	521.00
+1300	GGGG800101   	5005	2003-02-02 00:00:00.000	457.00
+1300	GGGG800101   	5010	2003-01-08 00:00:00.000	119.00
+
+--3 rows
+
+¿Cuál sería una consulta que obtuviera el mismo resultado sin usar el operador Unión? Compruébalo. 
+select * from entregan where clave=1450 or  clave=1300
+7.-(select clave from entregan where numero=5001) 
+intersect 
+(select clave from entregan where numero=5018) 
+
+1010
+--1 row
+
+8.-(select * from entregan) 
+minus 
+(select * from entregan where clave=1000) 
+Consulta:
+
+   SELECT * FROM Entregan 
+   WHERE Clave NOT IN (SELECT Clave FROM Entregan where clave= '1000')
+
+1010	BBBB800101   	5001	2000-05-03 00:00:00.000	528.00
+1010	BBBB800101   	5018	2000-11-10 00:00:00.000	667.00
+1010	BBBB800101   	5018	2002-03-29 00:00:00.000	523.00
+--129 rows
+
+9.-(select clave from entregan where numero=5001) 
+intersect 
+(select clave from entregan where numero=5018) 
+
+FALTA CONSULTA
+
+
+10.-(select * from entregan) 
+minus 
+(select * from entregan where clave=1000) 
+
+ SELECT * FROM Entregan 
+   WHERE Clave NOT IN (SELECT Clave FROM Entregan where clave= '1000')
+1010	BBBB800101   	5001	2000-05-03 00:00:00.000	528.00
+1010	BBBB800101   	5018	2000-11-10 00:00:00.000	667.00
+1010	BBBB800101   	5018	2002-03-29 00:00:00.000	523.00
+--129 rows
+
+11.-SQL 
+select * from entregan,materiales 
+1000	AAAA800101   	5000	1998-07-08 00:00:00.000	165.00	1000	Varilla 3/16	100.00	2.00
+1000	AAAA800101   	5019	1999-08-08 00:00:00.000	254.00	1000	Varilla 3/16	100.00	2.00
+1000	AAAA800101   	5019	2000-04-06 00:00:00.000	7.00	1000	Varilla 3/16	100.00	2.00
+1010	BBBB800101   	5001	2000-05-03 00:00:00.000	528.00	1000	Varilla 3/16	100.00	2.00
+--5940
+¿Cómo está definido el número de tuplas de este resultado en términos del número de tuplas de entregan y de materiales?
+Se define multiplicando cada registro existente
+12.-
+set dateformat dmy
+SELECT descripcion FROM materiales m, entregan e
+where m.clave = e.clave AND e.fecha >= '01-JAN-2000' AND e.fecha < '01-JAN-2001'
+Varilla 3/16
+Varilla 4/32
+Varilla 4/32
+
+¿Por qué aparecen varias veces algunas descripciones de material? 
+Signica que hubo varios materiales entregados en las mismas fechas
+--28 rows
+
+13.-
+set dateformat dmy
+SELECT DISTINCT descripcion FROM materiales m, entregan e
+where m.clave = e.clave AND e.fecha >= '01-JAN-2000' AND e.fecha < '01-JAN-2001'
+
+Arena
+Block
+Cantera rosa
+--22 rows
+¿Qué resultado obtienes en esta ocasión? 
+Descripcion de materiales que no estan dentro del rango de fechas
+14.-
+
+set dateformat dmy
+SELECT P.Numero, denominacion, fecha FROM Proyectos P, Entregan E
+ORDER BY P.numero ASC, fecha DESC
+
+5000	Vamos Mexico	2003-09-01 00:00:00.000
+5000	Vamos Mexico	2003-08-05 00:00:00.000
+5000	Vamos Mexico	2003-06-28 00:00:00.000
+
+--2640
+
+15.-
+
+SELECT * FROM Materiales where Descripcion LIKE 'Si%'
+1120	Sillar rosa	100.00	2.24
+1130	Sillar gris	110.00	2.26
+--2 rows
+¿Qué resultado obtienes? 
+-Resultados con si en tu descripcion
+Explica que hace el símbolo '%'. 
+-coincide con cualquier cadena que tenga cero o más caracteres 
+¿Qué sucede si la consulta fuera : LIKE 'Si' ?
+-no coincide con cualquier cadena que tenga cero o más caracteres 
+¿Qué resultado obtienes? 
+no muestra laguna respuesta en las consultas
+Explica a qué se debe este comportamiento. 
+16.-
+DECLARE @foo varchar(40);
+DECLARE @bar varchar(40);
+SET @foo = '¿Que resultado';
+SET @bar = ' ¿¿¿??? '
+SET @foo += ' obtienes?';
+PRINT @foo + @bar;
+
+¿Qué resultado obtienes de ejecutar el siguiente código? 
+la impresion de un mensaje
+¿Para qué sirve DECLARE? declara el tipo de dato impreso
+¿Cuál es la función de @foo? es utilizado como variable para concatenar
+¿Que realiza el operador SET? asgina valor a una variable declarada
+
+17.-
+SELECT RFC FROM Entregan WHERE RFC LIKE '[A-D]%'; 
+AAAA800101   
+AAAA800101   
+AAAA800101   
+--72 rows
+SELECT RFC FROM Entregan WHERE RFC LIKE '[^A]%'; 
+BBBB800101   
+BBBB800101   
+BBBB800101   
+--114 rows
+SELECT Numero FROM Entregan WHERE Numero LIKE '___6';
+BBBB800101   
+BBBB800101   
+BBBB800101   
+--114 rows
+
+18.-
+
+SELECT Clave,RFC,Numero,Fecha,Cantidad 
+FROM Entregan 
+WHERE Numero Between 5000 and 5010; 
+
+1000	AAAA800101   	5000	1998-07-08 00:00:00.000	165.00
+1010	BBBB800101   	5001	2000-05-03 00:00:00.000	528.00
+1020	CCCC800101   	5002	2001-07-29 00:00:00.000	582.00
+--60 rows
+¿Cómo filtrarías rangos de fechas? 
+se filtran definiendo entre una fecha y otra
+
+19.-SELECT RFC,Cantidad, Fecha,Numero 
+FROM [Entregan] 
+WHERE [Numero] Between 5000 and 5010 AND 
+Exists ( SELECT [RFC] 
+FROM [Proveedores] 
+WHERE RazonSocial LIKE 'La%' and [Entregan].[RFC] = [Proveedores].[RFC] ) 
+AAAA800101   	165.00	1998-07-08 00:00:00.000	5000
+CCCC800101   	582.00	2001-07-29 00:00:00.000	5002
+AAAA800101   	86.00	1999-01-12 00:00:00.000	5008
+¿Qué hace la consulta? 
+Muestra el rfc, catidad, fecha y numero de coincidencias con 'La', entre entregan y proveedores
+¿Qué función tiene el paréntesis ( ) después de EXISTS? 
+para definir si existe
+
+
+
+20.-SELECT TOP 2 * FROM Proyectos 
+
+5000	Vamos Mexico
+5001	Aztecón
+--2 rows
+¿Qué hace la siguiente sentencia? Explica por qué. 
+ 
+
+21.-SELECT TOP Numero FROM Proyectos 
+
+¿Qué sucede con la siguiente consulta? Explica por qué.
+ALTER TABLE materiales ADD PorcentajeImpuesto NUMERIC(6,2); 
+UPDATE materiales SET PorcentajeImpuesto = 2*clave/1000; 

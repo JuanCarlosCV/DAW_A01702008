@@ -1,0 +1,72 @@
+<script type="text/javascript" src="js/main.js"></script>
+</div>
+
+<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l8 s12">
+                <h5 class="white-text">Preguntas: </h5>
+                <p class="grey-text text-lighten-4">¿Por qué es una buena práctica separar el modelo del controlador?
+                  </p>
+                  <p class="grey-text text-lighten-3">R= 
+                      
+                  </p>
+                   <p class="grey-text text-lighten-4">¿Qué es SQL injection y cómo se puede prevenir?</p>
+                  <!--
+                  <p class="grey-text text-lighten-3">R=</p>
+                   <p class="grey-text text-lighten-4"></p>
+                  <p class="grey-text text-lighten-3">R=</p>
+                  
+                  <p class="grey-text text-lighten-4"></p>
+                  <p class="grey-text text-lighten-3">R= </p>
+                  -->
+              </div>
+              
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+           Juan Carlos Cabrera Vega A01702008
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
+            </div>
+          </div>
+        </footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+    
+    $(document).ready(function(){
+		$('#btnguardar').click(function(){
+			var datos=$('#frmajax').serialize();
+			$.ajax({
+				type:"POST",
+				url:"insertar.php",
+				data:datos,
+				success:function(r){
+					if(r==1){
+				    buscar_datos();        
+					}else{
+				    buscar_datos();
+					}
+				}
+			});
+
+			return false;
+		});
+	});
+    
+    
+
+</script>
+
+</body>
+</html>
