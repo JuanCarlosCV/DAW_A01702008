@@ -206,7 +206,7 @@ AAAA800101   	86.00	1999-01-12 00:00:00.000	5008
 ¿Qué hace la consulta? 
 Muestra el rfc, catidad, fecha y numero de coincidencias con 'La', entre entregan y proveedores
 ¿Qué función tiene el paréntesis ( ) después de EXISTS? 
-para definir si existe
+para definir si existedatos en una subconsulta
 
 
 
@@ -216,10 +216,137 @@ para definir si existe
 5001	Aztecón
 --2 rows
 ¿Qué hace la siguiente sentencia? Explica por qué. 
- 
+es el top, muestra las filas que estan al principio o de acuerdo al criterio expecificado  
 
 21.-SELECT TOP Numero FROM Proyectos 
 
 ¿Qué sucede con la siguiente consulta? Explica por qué.
+Muestra un error en sus ejecucion
+
+22.-
 ALTER TABLE materiales ADD PorcentajeImpuesto NUMERIC(6,2); 
 UPDATE materiales SET PorcentajeImpuesto = 2*clave/1000; 
+
+¿Qué consulta usarías para obtener el importe de las entregas es decir, el total en dinero de lo entregado, basado en la cantidad de la entrega y el precio del material y el impuesto asignado? 
+
+select SUM(Costo*(1+(PorcentajeImpuesto/100))*Cantidad) from materiales,entregan
+where materiales.clave = entregan.clave
+
+23.-
+
+  -- Los materiales (clave y descripción) entregados al proyecto "México sin ti no estamos completos". 
+  Select M.Clave, M.Descripcion 
+  From Entregan E,Materiales M,Proyectos P
+  Where  E.Clave = M.Clave AND E.Numero = P.Numero AND P.Denominacion = 'Mexico sin ti no estamos completos';
+
+1030	Varilla 4/33
+1230	Cemento 
+1430	Pintura B1022
+
+Select * from Proyectos
+
+     -- Los materiales (clave y descripción) que han sido proporcionados por el proveedor "Acme tools". 
+	 Select M.Clave, M.Descripcion 
+  From Entregan E,Materiales M,Proveedores P
+  Where  E.Clave = M.Clave AND E.RFC = P.RFC AND P.RazonSocial = 'Acme tools';
+  Select * from Proveedores
+
+
+24.- vistas creadas
+Create view vistafechas as
+SELECT descripcion FROM materiales m, entregan e
+where m.clave = e.clave AND e.fecha >= '01-JAN-2000' AND e.fecha < '01-JAN-2001'
+
+Select * From vistafechas
+
+
+Create view  vistaclave as 
+ SELECT * FROM Entregan 
+   WHERE Clave NOT IN (SELECT Clave FROM Entregan where clave= '1000') 
+
+   select * from vistaclave
+
+   Create view vistaNofecha as
+SELECT DISTINCT descripcion FROM materiales m, entregan e
+where m.clave = e.clave AND e.fecha >= '01-JAN-2000' AND e.fecha < '01-JAN-2001'
+   select * from vistaNofecha
+
+   Create view busquedavista as
+   
+SELECT * FROM Materiales where Descripcion LIKE 'Si%'
+   Select * from busquedavista
+
+   create view vistaRFC as
+   SELECT RFC FROM Entregan WHERE RFC LIKE '[A-D]%';
+   
+   select * from vistaRFC 
+25.-Consultas
+
+ -- Los materiales (clave y descripción) entregados al proyecto "México sin ti no estamos completos". 
+  Select M.Clave, M.Descripcion 
+  From Entregan E,Materiales M,Proyectos P
+  Where  E.Clave = M.Clave AND E.Numero = P.Numero AND P.Denominacion = 'Mexico sin ti no estamos completos';
+  Select * from Proyectos
+
+1030	Varilla 4/33
+1230	Cemento 
+1430	Pintura B1022
+
+
+     -- Los materiales (clave y descripción) que han sido proporcionados por el proveedor "Acme tools". 
+	 Select M.Clave, M.Descripcion 
+  From Entregan E,Materiales M,Proveedores P
+  Where  E.Clave = M.Clave AND E.RFC = P.RFC AND P.RazonSocial = 'Acme tools';
+  Select * from Proveedores
+
+o rows
+
+ --  El RFC de los proveedores que durante el 2000 entregaron en promedio cuando menos 300 materiales. 
+	SELECT E.RFC
+	From Entregan E,Proveedores P
+	where E.RFC = P.RFC AND CANTIDAD > 300 AND (FECHA>='01-JAN-2000' AND FECHA <='31-DEC-2000');
+	SELECT * 
+	From Entregan E,Proveedores P
+	where E.RFC = P.RFC
+
+BBBB800101   
+BBBB800101   
+EEEE800101   
+	  
+     -- El Total entregado por cada material en el año 2000. 
+	 SELECT DESCRIPCION, SUM(CANTIDAD) AS 'TOTAL'
+	 FROM Materiales M,Entregan E
+	 WHERE M.Clave = E.Clave AND(E.FECHA>='01-JAN-2000' AND E.FECHA <='31-DEC-2000')
+	GROUP BY Descripcion
+
+Arena	366.00
+Block	466.00
+Cantera rosa	162.00
+
+ --La Clave del material más vendido durante el 2001. (se recomienda usar una vista intermedia para su solución) 
+	  Create view vistadosmil as
+SELECT m.clave,COUNT(m.CLAVE) as 'conteo' FROM materiales m, entregan e
+where m.clave = e.clave AND e.fecha >= '01-JAN-2001' AND e.fecha < '31-DEC-2001' GROUP BY m.CLAVE;
+
+select * from vistadosmil;
+Select max(conteo) as 'Valor_maximo' From vistadosmil ;
+	  
+    R= 2
+
+--  Productos que contienen el patrón 'ub' en su nombre. 
+
+	SELECT DESCRIPCION 
+	FROM MATERIALES
+	Where descripcion like 'ub%'
+	o rows
+
+ --  Denominación y suma del total a pagar para todos los proyectos. 
+
+	select P.denominacion, sum()
+	from Materiales,Entregan,Proyectos 
+
+    --  Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Solo usando vistas). 
+
+    --  Denominación, RFC y RazonSocial de los proveedores que se suministran materiales al proyecto Televisa en acción que no se encuentran apoyando al proyecto Educando en Coahuila (Sin usar vistas, utiliza not in, in o exists). 
+
+     -- Costo de los materiales y los Materiales que son entregados al proyecto Televisa en acción cuyos proveedores también suministran materiales al proyecto Educando en Coahuila. 
