@@ -1,0 +1,146 @@
+Reporte de SubConsultas: Juan Carlos Cabrera Vega
+
+-La suma de las cantidades e importe total de todas las entregas realizadas durante el 97. 
+R= SELECT SUM(Costo*(1+(PorcentajeImpuesto/100))*Cantidad) AS 'Ventas 97' from materiales,entregan
+where materiales.clave = entregan.clave AND fecha BETWEEN '01-JAN-1997' AND '31-DEC-1997'
+
+44789.4720000000
+
+-Para cada proveedor, obtener la razón social del proveedor, número de entregas e importe total de las entregas realizadas. 
+
+SELECT RazonSocial, COUNT(Cantidad) AS 'Cantidad de Entregas', SUM(Costo*(1+(PorcentajeImpuesto/100))*Cantidad) AS 'VentasDelProveedor'
+FROM Proveedores P, Entregan E, Materiales M
+WHERE M.clave = E.clave AND E.RFC = P.RFC
+GROUP BY RazonSocial
+
+Alvin	15	794295.2064000000
+Cecoferre	18	860441.9770000000
+Comex	15	801930.5980000000
+
+-Por cada material obtener la clave y descripción del material, la cantidad total entregada, la mínima cantidad entregada, la máxima cantidad entregada, el importe total de las entregas de aquellos materiales en los que la cantidad promedio entregada sea mayor a 400. 
+
+R= 
+SELECT M.Clave, Descripcion, CAST(SUM(Cantidad) AS INT) AS 'Vendidos',
+	CAST(MIN(Cantidad) AS INT) AS 'Min entr',
+	CAST(MAX(Cantidad) AS INT) AS 'Max entr',
+	SUM(Costo*(1+(PorcentajeImpuesto/100))*Cantidad) AS 'Ventas Del Producto'
+FROM Materiales M, Entregan E
+WHERE M.clave = E.clave
+GROUP BY M.Clave, M.Descripcion
+HAVING AVG(Cantidad) > 400
+
+1010	Varilla 4/32	1718	523	667	201560.9140000000
+1040	Varilla 3/18	1349	263	546	220329.4720000000
+1050	Varilla 4/34	1216	90	623	217268.8000000000
+
+-Para cada proveedor, indicar su razón social y mostrar la cantidad promedio de cada material entregado, detallando la clave y descripción del material, excluyendo aquellos proveedores para los que la cantidad promedio sea menor a 500. 
+R=
+SELECT RazonSocial, AVG(Cantidad) AS 'Prom entr', M.Clave, Descripcion
+FROM Proveedores P, Materiales M, Entregan E
+WHERE M.clave = E.clave AND E.RFC = P.RFC
+GROUP BY P.RazonSocial, M.Clave, M.Descripcion
+HAVING AVG(Cantidad) < 500
+ORDER BY RazonSocial ASC
+
+Alvin	449.666666	1040	Varilla 3/18
+Alvin	358.000000	1120	Sillar rosa
+Alvin	471.666666	1200	Recubrimiento P1019
+-Mostrar en una solo consulta los mismos datos que en la consulta anterior pero para dos grupos de proveedores: aquellos para los que la cantidad promedio entregada es menor a 370 y aquellos para los que la cantidad promedio entregada sea mayor a 450.
+R=
+
+(SELECT RazonSocial, AVG(Cantidad) AS 'Prom entr', M.Clave, Descripcion
+FROM Proveedores P, Materiales M, Entregan E
+WHERE M.clave = E.clave AND E.RFC = P.RFC
+GROUP BY P.RazonSocial, M.Clave, M.Descripcion
+HAVING AVG(Cantidad) < 370)
+UNION
+(SELECT RazonSocial, AVG(Cantidad) AS 'Prom entr', M.Clave, Descripcion
+FROM Proveedores P, Materiales M, Entregan E
+WHERE M.clave = E.clave AND E.RFC = P.RFC
+GROUP BY P.RazonSocial, M.Clave, M.Descripcion
+HAVING AVG(Cantidad) < 450)
+ORDER BY RazonSocial ASC
+
+Alvin	222.000000	1360	Pintura C1010
+Alvin	295.333333	1280	Tepetate
+Alvin	358.000000	1120	Sillar rosa
+
+----------------------------------------------------------------------------
+SELECT * FROM Materiales
+
+INSERT INTO Materiales VALUES(1510, 'Tornillo T10', 12.0, 0)
+INSERT INTO Materiales VALUES(1520, 'Tornillo T12', 13.0, 0)
+INSERT INTO Materiales VALUES(1530, 'Tornillo T16', 14.0, 0)
+INSERT INTO Materiales VALUES(1540, 'Tornillo T20', 15.0, 0)
+INSERT INTO Materiales VALUES(1550, 'Tornillo T22', 16.0, 0)
+
+-Clave y descripción de los materiales que nunca han sido entregados. 
+R=
+SELECT Clave, Descripcion
+FROM Materiales E
+WHERE Clave NOT IN(
+	SELECT Clave
+	FROM Entregan
+)
+1440	Tornillo T10
+1450	Tornillo T12
+1460	Tornillo T16
+-Razón social de los proveedores que han realizado entregas tanto al proyecto 'Vamos México' como al proyecto 'Querétaro Limpio'. 
+R=
+SELECT RazonSocial, Denominacion
+FROM Proveedores Pr, Entregan E, Proyectos P
+WHERE Pr.RFC = E.RFC AND E.Numero = P.Numero
+	AND (Denominacion = 'Vamos Mexico' OR Denominacion = 'Queretaro limpio')
+GROUP BY RazonSocial, Denominacion
+
+Alvin	Vamos Mexico
+Cecoferre	Queretaro limpio
+La fragua	Queretaro limpio
+-Descripción de los materiales que nunca han sido entregados al proyecto 'CIT Yucatán'. 
+R=
+SELECT M.Clave
+FROM Materiales M, Proveedores Pr, Entregan E, Proyectos P
+WHERE M.Clave = E.Clave AND Pr.RFC = E.RFC AND E.Numero = P.Numero
+	AND (Denominacion != 'CIT Yucatan')
+GROUP BY M.Clave
+1000
+1010
+1020
+-Razón social y promedio de cantidad entregada de los proveedores cuyo promedio de cantidad entregada es mayor al promedio de la cantidad entregada por el proveedor con el RFC 'VAGO780901'. 
+
+R=
+SELECT RazonSocial, AVG(Cantidad) AS 'Prom entr'
+FROM Proveedores Pr, Entregan E
+WHERE Pr.RFC = E.RFC
+GROUP BY RazonSocial
+HAVING AVG(Cantidad) > (
+	SELECT AVG(Cantidad)
+	FROM Proveedores Pr, Entregan E
+	WHERE Pr.RFC = 'AAAA800101   ' AND Pr.RFC = E.RFC)
+Alvin	359.333333
+Cecoferre	335.500000
+La Ferre	396.666666
+Oviedo	431.111111
+Tabiquera del centro	402.800000
+Tubasa	333.666666
+
+-RFC, razón social de los proveedores que participaron en el proyecto 'Infonavit Durango' y cuyas cantidades totales entregadas en el 2000 fueron mayores a las cantidades totales entregadas en el 2001.
+
+
+SELECT SUM(Cantidad)/COUNT(Cantidad)
+FROM Proveedores Pr, Entregan E
+WHERE Pr.RFC = 'CCCC800101' AND Pr.RFC = E.RFC
+
+SELECT Pr.RFC, RazonSocial, Denominacion
+FROM Proveedores Pr, Entregan E, Proyectos P
+WHERE Pr.RFC = E.RFC AND E.Numero = P.Numero AND (Denominacion = 'Infonavit Durango')
+	AND fecha BETWEEN '01-JAN-2000' AND '31-DEC-2000'
+GROUP BY Pr.RFC, RazonSocial, Denominacion
+HAVING COUNT(Cantidad) >(
+	SELECT COUNT(Cantidad)
+	FROM Proveedores Pr, Entregan E, Proyectos P
+	WHERE Pr.RFC = E.RFC AND E.Numero = P.Numero AND (Denominacion = 'Infonavit Durango')
+		AND fecha BETWEEN '01-JAN-2001' AND '31-DEC-2001'
+)
+
+396.666666
